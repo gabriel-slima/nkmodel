@@ -1,35 +1,25 @@
-nkmodel <- function(numGen, numAgents, N, K, genotype){
+nkmodel <- function(numGenerations, N, K){
 
-  statesDF <- createDataLine(0,"",0)
-  agentsDF <- createDataLine(0,"",0)
+  statesDF <- createDataLine(0, "", 0)
+  agentsDF <- createDataLine(0, "", 0)
 
-  initGenotype <- rbinom(N, 1, 0.5)
+  organism <- rbinom(N, 1, 0.5)
 
-  listResult <- calculateFitness(N, K, initGenotype, statesDF)
-
-  initFitness <- listResult[[1]]
+  listResult <- calculateFitness(N, K, organism, statesDF)
+  fitness <- listResult[[1]]
   statesDF <- listResult[[2]]
 
-  for (j in 1:numAgents){
+  for (i in 1:numGenerations) {
 
-    genotype <- initGenotype
-    fitness <- initFitness
+    listResult <- generateNext(N, K, organism, fitness, statesDF)
 
-    for (i in 1:numGen) {
-
-      listResult <- generateNext(N, K, genotype, fitness, statesDF)
-
-      genotype <- listResult[[1]]
-      fitness <- listResult[[2]]
-      statesDF <- listResult[[3]]
-
-    }
-
-    # save the last conditions
-    state <- generateState(genotype)
-    agentsDF <- addDataLine(j, state, fitness, agentsDF)
-
+    organism <- listResult[[1]]
+    fitness <- listResult[[2]]
+    statesDF <- listResult[[3]]
   }
+
+  state <- generateState(organism)
+  agentsDF <- addDataLine(1, state, fitness, agentsDF)
 
   return(list(agentsDF, statesDF))
 }

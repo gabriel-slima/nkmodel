@@ -1,8 +1,21 @@
-getFitness <- function(gene, state, dataFrame){
-  fitness <- dataFrame[dataFrame$gene == gene & dataFrame$state == state, 3]
+#' getFitness
+#'
+#' Return the fitness value of the trait in the state given
+#' @param trait the trait
+#' @param state the state of the trait
+#' @param statesDF Data.frame with the fitness of each state
+#' @return A list containing
+#' \itemize{
+#' \item{fitness}{Fitness value of the trait.}
+#' \item{statesDF}{Updated statesDF.}
+#' }
+#' @author Gabriel Lima (gabriel-slima)
+#'
+getFitness <- function(trait, state, statesDF){
+  fitness <- statesDF[statesDF$trait == trait & statesDF$state == state, 3]
   if (length(fitness) == 0){
     fitness <- runif(1)
-    dataFrame <- addDataLine(gene, state, fitness, dataFrame)
+    statesDF <- addDataLine(trait, state, fitness, statesDF)
   }
-  return(list(fitness, dataFrame))
+  return(list(fitness, statesDF))
 }
