@@ -11,11 +11,11 @@
 #' }
 #' @author Gabriel Lima (gabriel-slima)
 #'
-getFitness <- function(trait, state, statesDF){
-  fitness <- statesDF[statesDF$trait == trait & statesDF$state == state, 3]
+getFitness <- function(sp, trait, state, statesDF){
+  fitness <- statesDF[statesDF$sp == sp & statesDF$trait == trait & statesDF$state == state, 4]
   if (length(fitness) == 0){
     fitness <- runif(1)
-    statesDF <- addDataLine(trait, state, fitness, statesDF)
+    statesDF <- addDataLine(sp, trait, state, fitness, statesDF)
   }
   return(list(fitness, statesDF))
 }

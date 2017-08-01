@@ -1,6 +1,7 @@
 #' addDataLine
 #'
 #' Add a line of data into the statesDF
+#' @param sp species id
 #' @param trait Id or position of the trait
 #' @param state The state of the trait
 #' @param fitness The trait fitness contribuition
@@ -8,6 +9,6 @@
 #' @return Updated statesDF
 #' @author Gabriel Lima
 #'
-addDataLine <- function(trait, state, fitness, statesDF) {
-  rbind(statesDF, createDataLine(trait, state, fitness))
+addDataLine <- function(sp, trait, state, fitness, statesDF) {
+  rbind(statesDF, createDataLine(sp, trait, state, fitness))
 }

@@ -1,1 +1,2 @@
 export(nkmodel)
+export(nk2model)

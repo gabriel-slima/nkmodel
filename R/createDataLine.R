@@ -1,14 +1,16 @@
 #' createDataLine
 #'
 #' Instantiate and initialize a data.frame
-#' @param trait Id or position of the gene
-#' @param state State of the gene and its dependency
-#' @param fitness Gene fitness contribuition
+#' @param sp Specie Id
+#' @param trait Id or position of the trait
+#' @param state State of the trait and its dependency
+#' @param fitness Trait fitness contribuition
 #' @return A data.frame
 #' @author Gabriel Lima
 #'
-createDataLine <- function(trait, state, fitness){
+createDataLine <- function(sp, trait, state, fitness){
   data.frame(
+    sp = sp,
     trait = trait,
     state = state,
     fitness = fitness

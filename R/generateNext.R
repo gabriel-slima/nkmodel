@@ -4,6 +4,7 @@
 #'
 #' @param N Number of traits
 #' @param K Number of other traits which have a fitness contribution of each gene or trait
+#' @param sp Species id
 #' @param organism Sequence of N 1s and 0s representing presence or absence of traits
 #' @param fitness The trait fitness contribuition
 #' @param statesDF Data.frame containing the fitness contribuition of the states already visited
@@ -17,10 +18,10 @@
 #'
 #' @author Gabriel Lima (gabriel-slima)
 #'
-generateNext <- function(N, K, organism, fitness, statesDF){
+generateNext <- function(N, K, sp, organism, fitness, statesDF){
 
   mutant <- mutateTrait(N, organism)
-  listResult <- calculateFitness(N, K, mutant, statesDF)
+  listResult <- calculateFitness(N, K, sp, mutant, statesDF)
 
   newFitness <- listResult[[1]]
   statesDF <- listResult[[2]]

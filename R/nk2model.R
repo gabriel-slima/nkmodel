@@ -1,4 +1,6 @@
-nkmodel <- function(numGenerations, N, K){
+nk2model <- function(numGenerations, N, K, type){
+
+  # 3 types: mutualismo, parasitismo e antagonismo
 
   statesDF <- createDataLine(0, 0, "", 0)
 
